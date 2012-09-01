@@ -2,7 +2,7 @@
 
 A nice alternative to `marker.setPosition(latLng)`. Include jQuery and jQuery Easing Plugin for more easing options.
 
-Demo: http://robsite.net/static/markermove/markermove.html
+Demo: http://robsite.net/static/markermove/markermove.html (click on the map)
 
 ## Usage
 
