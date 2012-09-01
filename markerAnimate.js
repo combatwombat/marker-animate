@@ -1,4 +1,4 @@
-// Animated Marker Movement. Robert Gerlach 2012 http://robsite.net/google-maps-animated-marker-move
+// Animated Marker Movement. Robert Gerlach 2012 https://github.com/combatwombat/marker-animate
 //
 // params:
 // newPosition - the new Position as google.maps.LatLng()
