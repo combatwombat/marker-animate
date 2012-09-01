@@ -1,6 +1,6 @@
 # Animated marker movement in Google Maps
 
-An nice alternative to `marker.setPosition(latLng)`. Include jQuery and jQuery Easing Plugin for more easing options.
+A nice alternative to `marker.setPosition(latLng)`. Include jQuery and jQuery Easing Plugin for more easing options.
 
 Demo: http://robsite.net/static/markermove/markermove.html
 
