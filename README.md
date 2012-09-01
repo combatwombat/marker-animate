@@ -6,7 +6,7 @@ Demo: http://robsite.net/static/markermove/markermove.html
 
 ## Usage
 
-Include `markerAnimate.js` after Google Maps and call `animateTo` on a `google.maps.Marker`.
+Include `markerAnimate.js` after Google Maps and call `animateTo` on a `google.maps.Marker`:
 
     // params:
     // newPosition - the new Position as google.maps.LatLng()
