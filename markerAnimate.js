@@ -1,14 +1,17 @@
-// Animated Marker Movement. Robert Gerlach 2012 https://github.com/combatwombat/marker-animate
+// Animated Marker Movement. Robert Gerlach 2012-2013 https://github.com/combatwombat/marker-animate
+// MIT license
 //
 // params:
-// newPosition - the new Position as google.maps.LatLng()
-// options - optional options object (optional)
-// options.duration - animation duration in ms (default 1000)
-// options.easing - easing function from jQuery and/or the jQuery easing plugin (default 'linear')
+// newPosition        - the new Position as google.maps.LatLng()
+// options            - optional options object (optional)
+// options.duration   - animation duration in ms (default 1000)
+// options.easing     - easing function from jQuery and/or the jQuery easing plugin (default 'linear')
+// options.complete   - callback function. Gets called, after the animation has finished
 google.maps.Marker.prototype.animateTo = function(newPosition, options) {
   defaultOptions = {
     duration: 1000,
-    easing: 'linear'
+    easing: 'linear',
+    complete: null
   }
   options = options || {};
 
@@ -28,8 +31,11 @@ google.maps.Marker.prototype.animateTo = function(newPosition, options) {
   window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
   window.cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 
-  // save current position. prefixed to avoid name collisions
-  this.AT_startPosition = this.getPosition();
+  // save current position. prefixed to avoid name collisions. separate for lat/lng to avoid calling lat()/lng() in every frame
+  this.AT_startPosition_lat = this.getPosition().lat();
+  this.AT_startPosition_lng = this.getPosition().lng();
+  var newPosition_lat = newPosition.lat();
+  var newPosition_lng = newPosition.lng();
 
   var animateStep = function(marker, startTime) {            
     var ellapsedTime = (new Date()).getTime() - startTime;
@@ -37,13 +43,13 @@ google.maps.Marker.prototype.animateTo = function(newPosition, options) {
     var easingDurationRatio = durationRatio;
 
     // use jQuery easing if it's not linear
-    if (options.easing != 'linear') {
+    if (options.easing !== 'linear') {
       easingDurationRatio = jQuery.easing[options.easing](durationRatio, ellapsedTime, 0, 1, options.duration);
     }
     
     if (durationRatio < 1) {
-      var deltaPosition = new google.maps.LatLng( marker.AT_startPosition.lat() + (newPosition.lat() - marker.AT_startPosition.lat())*easingDurationRatio,
-                                                  marker.AT_startPosition.lng() + (newPosition.lng() - marker.AT_startPosition.lng())*easingDurationRatio);
+      var deltaPosition = new google.maps.LatLng( marker.AT_startPosition_lat + (newPosition_lat - marker.AT_startPosition_lat)*easingDurationRatio,
+                                                  marker.AT_startPosition_lng + (newPosition_lng - marker.AT_startPosition_lng)*easingDurationRatio);
       marker.setPosition(deltaPosition);
 
       // use requestAnimationFrame if it exists on this browser. If not, use setTimeout with ~60 fps
@@ -54,7 +60,13 @@ google.maps.Marker.prototype.animateTo = function(newPosition, options) {
       }
 
     } else {
+      
       marker.setPosition(newPosition);
+
+      if (typeof options.complete === 'function') {
+        options.complete();
+      }
+
     }            
   }
 
