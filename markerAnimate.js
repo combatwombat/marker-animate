@@ -42,8 +42,8 @@ google.maps.Marker.prototype.animateTo = function(newPosition, options) {
     }
     
     if (durationRatio < 1) {
-      var deltaPosition = new google.maps.LatLng( marker.AT_startPosition.Xa + (newPosition.Xa - marker.AT_startPosition.Xa)*easingDurationRatio,
-                                                  marker.AT_startPosition.Ya + (newPosition.Ya - marker.AT_startPosition.Ya)*easingDurationRatio);
+      var deltaPosition = new google.maps.LatLng( marker.AT_startPosition.lat() + (newPosition.lat() - marker.AT_startPosition.lat())*easingDurationRatio,
+                                                  marker.AT_startPosition.lng() + (newPosition.lng() - marker.AT_startPosition.lng())*easingDurationRatio);
       marker.setPosition(deltaPosition);
 
       // use requestAnimationFrame if it exists on this browser. If not, use setTimeout with ~60 fps
