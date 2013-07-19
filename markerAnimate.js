@@ -36,6 +36,15 @@ google.maps.Marker.prototype.animateTo = function(newPosition, options) {
   this.AT_startPosition_lng = this.getPosition().lng();
   var newPosition_lat = newPosition.lat();
   var newPosition_lng = newPosition.lng();
+  
+  // crossing the 180° meridian and going the long way around the earth?
+  if (Math.abs(newPosition_lng - this.AT_startPosition_lng) > 180) {
+    if (newPosition_lng > this.AT_startPosition_lng) {      
+      newPosition_lng -= 360;      
+    } else {
+      newPosition_lng += 360;
+    }
+  }
 
   var animateStep = function(marker, startTime) {            
     var ellapsedTime = (new Date()).getTime() - startTime;
