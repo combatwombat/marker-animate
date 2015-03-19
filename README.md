@@ -4,6 +4,8 @@ A nice alternative to `marker.setPosition(latLng)`. Include jQuery and jQuery Ea
 
 Demo: http://robsite.net/static/markermove/markermove.html (click on the map)
 
+**Update: For a much nicer and unobtrusive marker animation library based on this one, check out [marker-animate-unobtrusive](https://github.com/terikon/marker-animate-unobtrusive)**
+
 ## Usage
 
 Include `markerAnimate.js` after Google Maps and call `animateTo` on a `google.maps.Marker`:
