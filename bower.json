@@ -2,7 +2,7 @@
   "name": "marker-animate",
   "main": "markerAnimate.js",
   "ignore": [
-    ".*"
+    ".*",
     "*.md",
     "demo"
   ]
