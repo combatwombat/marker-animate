@@ -7,16 +7,16 @@
 // options.duration   - animation duration in ms (default 1000)
 // options.easing     - easing function from jQuery and/or the jQuery easing plugin (default 'linear')
 // options.complete   - callback function. Gets called, after the animation has finished
-google.maps.Marker.prototype.animateTo = function(newPosition, options) {
-  defaultOptions = {
+(google.maps.Marker.prototype.animateTo = function(newPosition, options) {
+  var defaultOptions = {
     duration: 1000,
     easing: 'linear',
     complete: null
-  }
+  };
   options = options || {};
 
   // complete missing options
-  for (key in defaultOptions) {
+  for (var key in defaultOptions) {
     options[key] = options[key] || defaultOptions[key];
   }
 
@@ -24,7 +24,6 @@ google.maps.Marker.prototype.animateTo = function(newPosition, options) {
   if (options.easing != 'linear') {            
     if (typeof jQuery == 'undefined' || !jQuery.easing[options.easing]) {
       throw '"' + options.easing + '" easing function doesn\'t exist. Include jQuery and/or the jQuery easing plugin and use the right function name.';
-      return;
     }
   }
   
@@ -47,13 +46,13 @@ google.maps.Marker.prototype.animateTo = function(newPosition, options) {
   }
 
   var animateStep = function(marker, startTime) {            
-    var ellapsedTime = (new Date()).getTime() - startTime;
-    var durationRatio = ellapsedTime / options.duration; // 0 - 1
+    var elapsedTime = (new Date()).getTime() - startTime;
+    var durationRatio = elapsedTime / options.duration; // 0 - 1
     var easingDurationRatio = durationRatio;
 
     // use jQuery easing if it's not linear
     if (options.easing !== 'linear') {
-      easingDurationRatio = jQuery.easing[options.easing](durationRatio, ellapsedTime, 0, 1, options.duration);
+      easingDurationRatio = jQuery.easing[options.easing](durationRatio, elapsedTime, 0, 1, options.duration);
     }
     
     if (durationRatio < 1) {
@@ -77,7 +76,7 @@ google.maps.Marker.prototype.animateTo = function(newPosition, options) {
       }
 
     }            
-  }
+  };
 
   // stop possibly running animation
   if (window.cancelAnimationFrame) {
@@ -87,4 +86,4 @@ google.maps.Marker.prototype.animateTo = function(newPosition, options) {
   }
   
   animateStep(this, (new Date()).getTime());
-}
+});
