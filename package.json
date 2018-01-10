@@ -1,0 +1,19 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "Animates the movement of Google Maps markers",
+  "main": "markerAnimate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/combatwombat/marker-animate.git"
+  },
+  "author": "Robert Gerlach",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/combatwombat/marker-animate/issues"
+  },
+  "homepage": "https://github.com/combatwombat/marker-animate#readme"
+}
