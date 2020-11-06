@@ -6,7 +6,6 @@ A nice alternative to `marker.setPosition(latLng)`. Include jQuery and jQuery Ea
 
 Demo: http://robsite.net/static/markermove/markermove.html (click on the map)
 
-
 ## Usage
 
 Include `markerAnimate.js` after Google Maps and call `animateTo` on a `google.maps.Marker`:
